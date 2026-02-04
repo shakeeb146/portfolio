@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RM_Portfolio | Technical Projects</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
+    <style>
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #151515;
+            --bg-tertiary: #1e1e1e;
+            --text-primary: #ffffff;
+            --text-secondary: #b0b0b0;
+            --accent-primary: #6c63ff;
+            --accent-secondary: #ff6584;
+            --accent-tertiary: #36d1dc;
+            --border-color: #2a2a2a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header & Navigation */
+        header {
+            background-color: var(--bg-secondary);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-button {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--accent-primary);
+            display: inline;
+            align-items: center;
+            margin-right: 10px;
+            gap: 0;
+        }
+
+        .logo-button span {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 100px 0;
+            background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-tertiary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--accent-primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(108, 99, 255, 0.3);
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-tertiary));
+        }
+
+        /* Section Styles */
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            font-size: 2.5rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-tertiary));
+            border-radius: 2px;
+        }
+
+        /* About Section */
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--accent-primary);
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+            color: var(--text-secondary);
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .tech-badge {
+            background-color: var(--bg-tertiary);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            border: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .tech-badge i {
+            color: var(--accent-primary);
+        }
+
+        .profile-image {
+            flex: 1;
+            text-align: center;
+        }
+
+        .profile-image img {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--accent-primary);
+            box-shadow: 0 10px 30px rgba(108, 99, 255, 0.3);
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            background-color: var(--bg-secondary);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid var(--border-color);
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .project-image {
+            height: 200px;
+            background-color: var(--bg-tertiary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-primary);
+            font-size: 3rem;
+        }
+
+        .project-content {
+            padding: 20px;
+        }
+
+        .project-title {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            color: var(--accent-primary);
+        }
+
+        .project-description {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .project-tech span {
+            background-color: var(--bg-tertiary);
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.8rem;
+            color: var(--accent-tertiary);
+        }
+
+        .project-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .project-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: color 0.3s;
+        }
+
+        .project-links a:hover {
+            color: var(--accent-primary);
+        }
+
+        /* Code Section */
+        .code-section {
+            background-color: var(--bg-secondary);
+        }
+
+        .code-container {
+            background-color: var(--bg-tertiary);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .code-header {
+            background-color: #1a1a1a;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .code-title {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .code-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .code-action {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .code-action.red {
+            background-color: #ff5f56;
+        }
+
+        .code-action.yellow {
+            background-color: #ffbd2e;
+        }
+
+        .code-action.green {
+            background-color: #27ca3f;
+        }
+
+        .code-block {
+            padding: 20px;
+            overflow-x: auto;
+        }
+
+        pre {
+            margin: 0;
+        }
+
+        /* GitHub Section */
+        .github-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 50px;
+        }
+
+        .stat-card {
+            background-color: var(--bg-secondary);
+            padding: 25px;
+            border-radius: 10px;
+            text-align: center;
+            border: 1px solid var(--border-color);
+        }
+
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--accent-primary);
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 1rem;
+        }
+
+        .github-repos {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .repo-card {
+            background-color: var(--bg-secondary);
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+        }
+
+        .repo-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .repo-name {
+            font-weight: 600;
+            color: var(--accent-primary);
+            text-decoration: none;
+        }
+
+        .repo-stats {
+            display: flex;
+            gap: 15px;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .repo-description {
+            color: var(--text-secondary);
+            margin-bottom: 15px;
+        }
+
+        .repo-topics {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .repo-topic {
+            background-color: var(--bg-tertiary);
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            color: var(--accent-tertiary);
+        }
+
+        /* Contact Section */
+        .contact-content {
+            display: flex;
+            gap: 50px;
+        }
+
+        .contact-info {
+            flex: 1;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background-color: var(--bg-secondary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-primary);
+            font-size: 1.2rem;
+        }
+
+        .contact-text h3 {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+
+        .contact-text p {
+            color: var(--text-secondary);
+        }
+
+        .contact-form {
+            flex: 1;
+            background-color: var(--bg-secondary);
+            padding: 30px;
+            border-radius: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text-secondary);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            background-color: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+            color: var(--text-primary);
+            font-size: 1rem;
+        }
+
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background-color: var(--accent-primary);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .submit-btn:hover {
+            background-color: #5a52e0;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--bg-secondary);
+            padding: 40px 0;
+            text-align: center;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background-color: var(--bg-tertiary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .social-link:hover {
+            background-color: var(--accent-primary);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .about-content {
+                flex-direction: column;
+            }
+
+            .contact-content {
+                flex-direction: column;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo-button">RM<span class="logo-button">_</span><div class="logo-button">port</div><span class="logo-button">folio</span></div>
+                <div class="nav-links">
+                    <a href="#about">About</a>
+                    <a href="#code">Code</a>
+                    <a href="#github">GitHub</a>
+                    <a href="#contact">Contact</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Full Stack Developer</h1>
+            <p>Building innovative web applications with modern technologies. Passionate about clean code, user experience, and solving complex problems.</p>
+            <a href="#github" class="cta-button">View My Work</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Hi, I'm Rehman Developer</h3>
+                    <p>I'm a passionate full-stack developer with 5+ years of experience building web applications. I specialize in JavaScript technologies including React, Node.js, and modern frameworks.</p>
+                    <p>My approach combines technical expertise with a keen eye for design, resulting in applications that are both functional and visually appealing.</p>
+                    
+                    <div class="tech-stack">
+                        <div class="tech-badge"><i class="fab fa-html5"></i> HTML5</div>
+                        <div class="tech-badge"><i class="fab fa-css3" aria-hidden="true"></i> CSS3</div>
+                        <div class="tech-badge"><i class="fab fa-python"></i> Python</div>
+                        <div class="tech-badge"><i class="fas fa-database"></i> MongoDB</div>
+                        <div class="tech-badge"><i class="fab fa-cplusplus"></i> C++</div>
+                    </div>
+                </div>
+                <div class="profile-image">
+                    <img src="image1.jpeg" alt="Developer Profile">
+                </div>
+            </div>
+        </div>
+    </section>
+
+   
+    <!-- Code Section -->
+    <section id="code" class="code-section">
+        <div class="container">
+            <h2 class="section-title">Code Examples</h2>
+            <div class="code-container">
+                <div class="code-header">
+                    <div class="code-title">apiController.js</div>
+                    <div class="code-actions">
+                        <div class="code-action red"></div>
+                        <div class="code-action yellow"></div>
+                        <div class="code-action green"></div>
+                    </div>
+                </div>
+                <div class="code-block">
+                    <pre><code class="javascript">
+// API Controller for User Management
+const User = require('../models/User');
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+
+// Register new user
+exports.registerUser = async (req, res) => {
+    try {
+        const { name, email, password } = req.body;
+        
+        // Check if user exists
+        let user = await User.findOne({ email });
+        if (user) {
+            return res.status(400).json({ 
+                success: false, 
+                message: 'User already exists' 
+            });
+        }
+        
+        // Create new user
+        user = new User({
+            name,
+            email,
+            password
+        });
+        
+        // Hash password
+        const salt = await bcrypt.genSalt(10);
+        user.password = await bcrypt.hash(password, salt);
+        
+        // Save user to database
+        await user.save();
+        
+        // Generate JWT token
+        const payload = {
+            user: {
+                id: user.id
+            }
+        };
+        
+        jwt.sign(
+            payload,
+            process.env.JWT_SECRET,
+            { expiresIn: '24h' },
+            (err, token) => {
+                if (err) throw err;
+                res.status(201).json({
+                    success: true,
+                    token,
+                    user: {
+                        id: user.id,
+                        name: user.name,
+                        email: user.email
+                    }
+                });
+            }
+        );
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).send('Server error');
+    }
+};
+
+// Authenticate user
+exports.authUser = async (req, res) => {
+    try {
+        const { email, password } = req.body;
+        
+        // Find user by email
+        let user = await User.findOne({ email });
+        if (!user) {
+            return res.status(400).json({
+                success: false,
+                message: 'Invalid credentials'
+            });
+        }
+        
+        // Check password
+        const isMatch = await bcrypt.compare(password, user.password);
+        if (!isMatch) {
+            return res.status(400).json({
+                success: false,
+                message: 'Invalid credentials'
+            });
+        }
+        
+        // Generate JWT token
+        const payload = {
+            user: {
+                id: user.id
+            }
+        };
+        
+        jwt.sign(
+            payload,
+            process.env.JWT_SECRET,
+            { expiresIn: '24h' },
+            (err, token) => {
+                if (err) throw err;
+                res.json({
+                    success: true,
+                    token,
+                    user: {
+                        id: user.id,
+                        name: user.name,
+                        email: user.email
+                    }
+                });
+            }
+        );
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).send('Server error');
+    }
+};
+                    </code></pre>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GitHub Section -->
+    <section id="github">
+        <div class="container">
+            <h2 class="section-title">GitHub Integration</h2>
+            
+            <div class="github-stats">
+                <div class="stat-card">
+                    <div class="stat-value">5</div>
+                    <div class="stat-label">Repositories</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">1,842</div>
+                    <div class="stat-label">Commits</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">26</div>
+                    <div class="stat-label">Followers</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">13</div>
+                    <div class="stat-label">Following</div>
+                </div>
+            </div>
+            
+            <h3 style="text-align: center; margin-bottom: 30px; color: var(--accent-primary),var(--text-primary);">Recent Repositories</h3>
+            
+            <div class="github-repos">
+                <!-- Repo 1 -->
+                <div class="repo-card">
+                    <div class="repo-header">
+                        <a href="#" class="repo-name">Dashboard</a>
+                        <div class="repo-stats">
+                            <span><i class="fas fa-star"></i> 24</span>
+                            <span><i class="fas fa-code-branch"></i> 8</span>
+                        </div>
+                    </div>
+                    <p class="repo-description">A responsive dashboard application built with HTML5 and CSS3.</p>
+                    <div class="repo-topics">
+                        <span class="repo-topic">html5</span>
+                        <span class="repo-topic">css3</span>
+                        <span class="repo-topic">javascript</span>
+                    </div>
+                </div>
+                
+                <!-- Repo 2 -->
+                <div class="repo-card">
+                    <div class="repo-header">
+                        <a href="#" class="repo-name">Banking App</a>
+                        <div class="repo-stats">
+                            <span><i class="fas fa-star"></i> 18</span>
+                            <span><i class="fas fa-code-branch"></i> 5</span>
+                        </div>
+                    </div>
+                    <p class="repo-description">A secure authentication API built with Node.js, Express and JWT.</p>
+                    <div class="repo-topics">
+                        <span class="repo-topic">html5</span>
+                        <span class="repo-topic">css3</span>
+                        <span class="repo-topic">javascript</span>
+                    </div>
+                </div>
+                
+                <!-- Repo 3 -->
+                <div class="repo-card">
+                    <div class="repo-header">
+                        <a href="#" class="repo-name">Expense-tracker</a>
+                        <div class="repo-stats">
+                            <span><i class="fas fa-star"></i> 31</span>
+                            <span><i class="fas fa-code-branch"></i> 12</span>
+                        </div>
+                    </div>
+                    <p class="repo-description">Interactive Expense tracking application using Python.</p>
+                    <div class="repo-topics">
+                        <span class="repo-topic">Python</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 40px;">
+                <a href="https://github.com/shakeeb146?tab=repositories" class="cta-button">View All Repositories</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" style="background-color: var(--bg-secondary);">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h3>Email</h3>
+                            <p>rehmanmalikk146@gmail.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h3>Phone</h3>
+                            <p>+92 3135085494</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h3>Location</h3>
+                            <p>Lahore, Pakistan</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form>
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" class="form-control" placeholder="Your Name">
+                        </div>
+                        <button onclick="location.href='https://wa.me/923135085494'" type="button" class="submit-btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="social-links">
+                <a href="https://github.com/shakeeb146" class="social-link"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/rehman-malik-88b9bb380/" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://wa.me/923135085494" class="social-link"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
+            </div>
+            <p class="copyright">© 2023 DevPortfolio. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Highlight.js for code syntax highlighting -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script>
+        // Initialize highlight.js
+        document.addEventListener('DOMContentLoaded', (event) => {
+            document.querySelectorAll('pre code').forEach((el) => {
+                hljs.highlightElement(el);
+            });
+        });
+    </script>
+</body>
+</html>
